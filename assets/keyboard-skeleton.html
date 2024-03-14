@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <style>
+      /*
+      * Prefixed by https://autoprefixer.github.io
+      */
+      html * {
+        font-family: 'Roboto' !important;
+      }
+      html {
+        background-color: #742384;
+      }
+
+      body {
+        text-align: center;
+        overflow: auto;
+        overflow-y: hidden;
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        width: 100%;
+        margin: 0px;
+      }
+
+      .label {
+        color: #626371 !important;
+      }
+
+      .login-header {
+        background-color: #742384;
+        width: 100%;
+        border-radius: 0px 0px 20px 20px;
+        margin-bottom: 20px;
+        text-align: right;
+        position: relative;
+      }
+
+      .back-button {
+        font-size: 24px;
+        padding-left: 16px;
+      }
+      .img-header {
+        border-radius: 0px 0px 20px 0px;
+        bottom: -6px;
+        position: relative;
+      }
+
+      .keyboard-modal {
+        background-color: #742384;
+        text-align: center;
+        overflow: auto;
+        overflow-y: hidden;
+        height: 100%;
+      }
+
+      .welcome-message {
+        color: white;
+        font-size: 20px;
+        margin-bottom: 0px;
+        font-weight: bold;
+      }
+
+      .enter-password-message {
+        margin-bottom: 0;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 8px;
+      }
+
+      .close {
+        left: 15px;
+        top: 32px;
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        color: white;
+      }
+
+      .title-section {
+        margin: auto;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+      }
+
+      * {
+        -webkit-user-select: none; /* Chrome all / Safari all */
+        -moz-user-select: none; /* Firefox all */
+        -ms-user-select: none; /* IE 10+ */
+        user-select: none;
+      }
+      .content-parent {
+        height: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+      }
+
+      /*
+      keyboard
+      */
+      .pin {
+        border: solid;
+        border-color: #a35aad;
+        background-color: #a35aad;
+        border-radius: 50%;
+        border-width: 1px;
+        margin-left: 12px;
+        margin-right: 12px;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: 8px;
+        -webkit-border-radius: 50%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+
+      .pin-fill {
+        background-color: #00d0b6;
+        border-color: #00d0b6;
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+      }
+
+      .buttons-keyboard {
+        width: 97% !important;
+        display: inline-block;
+      }
+
+      .buttons-fake {
+        color: #8b3d99 !important;
+      }
+
+      #keyboard {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+      }
+
+      #pinContainer {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        margin: auto;
+      }
+
+      #pinContainer .pin {
+        border: 0;
+        padding: 0;
+        width: 12px;
+        height: 12px;
+        -webkit-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        transition: all 0.2s;
+      }
+
+      .newKeyboard {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        padding: 0px 20px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+      }
+
+      .new_btn_key {
+        width: calc(33.3333% - 8px);
+        line-height: 44px;
+        display: inline-block;
+        margin: 0px 4px;
+        margin-bottom: 8px;
+        background-color: #8b3d99;
+        border-radius: 8px;
+        color: white;
+        font-size: 24px;
+        -webkit-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        transition: all 0.2s;
+      }
+
+      .button.hoverActive {
+        -webkit-transform: scale(0.88);
+        -ms-transform: scale(0.88);
+        transform: scale(0.88);
+        background-color: #5e186c;
+      }
+
+      .newKeyboard .new_btn_key:nth-child(10) {
+        margin-left: auto;
+      }
+      .newKeyboard .new_btn_key:last-child {
+        background-color: transparent;
+      }
+
+      .newKeyboard .new_btn_key img {
+        margin-bottom: -4px;
+      }
+
+      .skeleton {
+        position: relative;
+        overflow: hidden;
+      }
+      .skeleton:before {
+        content: '';
+        position: absolute;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+        background: -webkit-gradient(
+          linear,
+          left top,
+          right top,
+          color-stop(00%, rgba(116, 35, 128, 0)),
+          color-stop(50%, rgba(116, 35, 128, 1)),
+          to(rgba(116, 35, 128, 0))
+        );
+        background: -o-linear-gradient(
+          left,
+          rgba(116, 35, 128, 0) 00%,
+          rgba(116, 35, 128, 1) 50%,
+          rgba(116, 35, 128, 0) 100%
+        );
+        background: linear-gradient(
+          90deg,
+          rgba(116, 35, 128, 0) 00%,
+          rgba(116, 35, 128, 1) 50%,
+          rgba(116, 35, 128, 0) 100%
+        );
+        -webkit-animation: skeleton infinite 1.2s ease-out;
+        animation: skeleton infinite 1.2s ease-out;
+      }
+
+      @-webkit-keyframes skeleton {
+        from {
+          left: -100%;
+        }
+        to {
+          left: 100%;
+        }
+      }
+
+      @keyframes skeleton {
+        from {
+          left: -100%;
+        }
+        to {
+          left: 100%;
+        }
+      }
+
+      @media (max-height: 600px) {
+        .newKeyboard {
+          margin-top: 20px;
+        }
+      }
+    </style>
+</head>
+
+<body>
+<div id="login-keyboard" class="keyboard-modal row">
+    <div class="content-parent">
+        <div id="close" class="close"></div>
+        <div class="title-section">
+            <img
+                    src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNDBweCIgaGVpZ2h0PSI0MHB4IiB2aWV3Qm94PSIwIDAgNDAgNDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8dGl0bGU+c3BvdHMvbC9zcF9sb2NrX2Q8L3RpdGxlPgogICAgPGcgaWQ9InNwb3RzL2wvc3BfbG9ja19kIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8ZyBpZD0iR3JvdXAtMiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNi4wMDAwMDAsIDMuMDAwMDAwKSI+CiAgICAgICAgICAgIDxnIGlkPSJHcm91cCI+CiAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMjIuMzUyOTQxMiwxNC43MjMwNzY5IEwxOC42ODIzNTI5LDE0LjcyMzA3NjkgTDE4LjY4MjM1MjksOS4yMDE5MjMwOCBDMTguNjgyMzUyOSw2LjE1MjY3NDAxIDE2LjIxNzI4NTQsMy42ODA3NjkyMyAxMy4xNzY0NzA2LDMuNjgwNzY5MjMgQzEwLjEzNTY1NTcsMy42ODA3NjkyMyA3LjY3MDU4ODI0LDYuMTUyNjc0MDEgNy42NzA1ODgyNCw5LjIwMTkyMzA4IEw3LjY3MDU4ODI0LDE0LjcyMzA3NjkgTDQsMTQuNzIzMDc2OSBMNCw5LjIwMTkyMzA4IEM0LDQuMTE5ODQxMjkgOC4xMDg0NDU4MywwIDEzLjE3NjQ3MDYsMCBDMTguMjQ0NDk1NCwwIDIyLjM1Mjk0MTIsNC4xMTk4NDEyOSAyMi4zNTI5NDEyLDkuMjAxOTIzMDggTDIyLjM1Mjk0MTIsMTQuNzIzMDc2OSBaIiBpZD0iUGF0aCIgZmlsbD0iI0EzNUFBRCI+PC9wYXRoPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTEuODU3MTQyODYsMTEgTDI0LjE0Mjg1NzEsMTEgQzI1LjE2ODUyODgsMTEgMjYsMTEuODE0NDk3NCAyNiwxMi44MTkyMzA4IEwyNiwzMS4wMTE1Mzg1IEMyNiwzMi4wMTYyNzE5IDI1LjE2ODUyODgsMzIuODMwNzY5MiAyNC4xNDI4NTcxLDMyLjgzMDc2OTIgTDEuODU3MTQyODYsMzIuODMwNzY5MiBDMC44MzE0NzExNzksMzIuODMwNzY5MiAwLDMyLjAxNjI3MTkgMCwzMS4wMTE1Mzg1IEwwLDEyLjgxOTIzMDggQzAsMTEuODE0NDk3NCAwLjgzMTQ3MTE3OSwxMSAxLjg1NzE0Mjg2LDExIFoiIGlkPSJSZWN0YW5nbGUiIGZpbGw9IiNDRTkyRDYiPjwvcGF0aD4KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0xMy4yODQzMTM3LDE4IEMxNC41NDU5MDU0LDE4IDE1LjU2ODYyNzUsMTguOTcyMTgxNyAxNS41Njg2Mjc1LDIwLjE3MTQyODYgQzE1LjU2ODYyNzUsMjAuOTc0NjgwNyAxNS4xMDk4MDU1LDIxLjY3NjA2NSAxNC40Mjc3MDEzLDIyLjA1MTY4MTQgTDE0LjQyNjQ3MDYsMjQuNTE0Mjg1NyBDMTQuNDI2NDcwNiwyNS4xMTM5MDkyIDEzLjkxNTEwOTUsMjUuNiAxMy4yODQzMTM3LDI1LjYgQzEyLjY1MzUxNzksMjUuNiAxMi4xNDIxNTY5LDI1LjExMzkwOTIgMTIuMTQyMTU2OSwyNC41MTQyODU3IEwxMi4xNDIwNzQxLDIyLjA1MjMxMzEgQzExLjQ1OTMzNjgsMjEuNjc2ODUxNyAxMSwyMC45NzUxMzEyIDExLDIwLjE3MTQyODYgQzExLDE4Ljk3MjE4MTcgMTIuMDIyNzIyMSwxOCAxMy4yODQzMTM3LDE4IFoiIGlkPSJQYXRoIiBmaWxsPSIjOEIzRDk5Ij48L3BhdGg+CiAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPHJlY3QgaWQ9IlJlY3RhbmdsZSIgZmlsbD0iIzEwQ0JCNCIgeD0iMTYiIHk9IjI3IiB3aWR0aD0iMTYiIGhlaWdodD0iOCIgcng9IjQiPjwvcmVjdD4KICAgICAgICAgICAgPGNpcmNsZSBpZD0iT3ZhbCIgZmlsbD0iI0ZGRkZGRiIgY3g9IjI0IiBjeT0iMzEiIHI9IjEiPjwvY2lyY2xlPgogICAgICAgICAgICA8Y2lyY2xlIGlkPSJPdmFsLUNvcHkiIGZpbGw9IiNGRkZGRkYiIGN4PSIyOCIgY3k9IjMxIiByPSIxIj48L2NpcmNsZT4KICAgICAgICAgICAgPGNpcmNsZSBpZD0iT3ZhbC1Db3B5LTIiIGZpbGw9IiNGRkZGRkYiIGN4PSIyMCIgY3k9IjMxIiByPSIxIj48L2NpcmNsZT4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg=="
+                    height="72px"
+                    style="margin-top: 32px;"
+            />
+            <p id="wellcomeMessage" class="welcome-message">Crea tu clave Yape</p>
+            <p id="enterPassword" class="enter-password-message">Clave de 6 dígitos</p>
+        </div>
+        <div id="keyboard" class="skeleton">
+            <div id="pinContainer">
+                <label class="pin pin1"></label><label class="pin pin2"></label>
+                <label class="pin pin3"></label><label class="pin pin4"></label>
+                <label class="pin pin5"></label><label class="pin pin6"></label>
+            </div>
+            <div id="newKeyboard" class="newKeyboard">
+                <a class="new_btn_key btn-key buttons-fake">0</a>
+                <a class="new_btn_key btn-key buttons-fake">0</a>
+                <a class="new_btn_key btn-key buttons-fake">0</a>
+                <a class="new_btn_key btn-key buttons-fake">0</a>
+                <a class="new_btn_key btn-key buttons-fake">0</a>
+                <a class="new_btn_key btn-key buttons-fake">0</a>
+                <a class="new_btn_key btn-key buttons-fake">0</a>
+                <a class="new_btn_key btn-key buttons-fake">0</a>
+                <a class="new_btn_key btn-key buttons-fake">0</a>
+                <a class="new_btn_key btn-key buttons-fake">0</a>
+                <a class="new_btn_key btn-delete">
+                    <img
+                            src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjRweCIgaGVpZ2h0PSIyNHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8dGl0bGU+Yi9pY19iYWNrc3BhY2VfYjwvdGl0bGU+CiAgICA8ZyBpZD0iaWNvbnMiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSJiL2ljX2JhY2tzcGFjZV9iIiBmaWxsPSIjZTNiMmViIj4KICAgICAgICAgICAgPHBhdGggZD0iTTE4LjE4NjcwNzUsNCBDMjAuMjkyNzMwOCw0IDIyLDUuNzkwODYxIDIyLDggTDIyLDE2IEMyMiwxOC4yMDkxMzkgMjAuMjkyNzMwOCwyMCAxOC4xODY3MDc1LDIwIEwxMC4xMDMyODc0LDIwIEM5LjE2OTM1ODEsMjAgOC4yNjc5MDEyNywxOS42NDA0ODU3IDcuNTY5ODczNzgsMTguOTg5NjM3MyBMMy4yNzk5MTk3MSwxNC45ODk2MzczIEMxLjcwNTg1ODI3LDEzLjUyMTk2NTIgMS41NjQwNzcyNywxMC45OTM2NzU3IDIuOTYzMjQzLDkuMzQyNTQ0NjQgQzMuMDYyNTA2NzYsOS4yMjU0MDUyMSAzLjE2ODI0Nzk4LDkuMTE0NDg2NjcgMy4yNzk5MTk3MSw5LjAxMDM2MjczIEw3LjU2OTg3Mzc4LDUuMDEwMzYyNzMgQzguMjY3OTAxMjcsNC4zNTk1MTQyOCA5LjE2OTM1ODEsNCAxMC4xMDMyODc0LDQgTDE4LjE4NjcwNzUsNCBaIE0xMS42MTI4OTk0LDguMjA5NzA0NjEgQzExLjIyMDYwODIsNy45MDQ2Nzk3MiAxMC42NTMzNzcyLDcuOTMyNDA5MjYgMTAuMjkyODkzMiw4LjI5Mjg5MzIyIEM5LjkwMjM2ODkzLDguNjgzNDE3NTEgOS45MDIzNjg5Myw5LjMxNjU4MjQ5IDEwLjI5Mjg5MzIsOS43MDcxMDY3OCBMMTAuMjkyODkzMiw5LjcwNzEwNjc4IEwxMi41NiwxMS45NzQgTDEwLjI5Mjg5MzIsMTQuMjQyNjQwNyBDOS45MDIzNjg5MywxNC42MzMxNjUgOS45MDIzNjg5MywxNS4yNjYzMyAxMC4yOTI4OTMyLDE1LjY1Njg1NDIgQzEwLjY1MzM3NzIsMTYuMDE3MzM4MiAxMS4yMjA2MDgyLDE2LjA0NTA2NzcgMTEuNjEyODk5NCwxNS43NDAwNDI5IEwxMS43MDcxMDY4LDE1LjY1Njg1NDIgTDEzLjk3NCwxMy4zODkgTDE2LjI0MjY0MDcsMTUuNjU2ODU0MiBMMTYuMzM2ODQ4LDE1Ljc0MDA0MjkgQzE2LjcyOTEzOTIsMTYuMDQ1MDY3NyAxNy4yOTYzNzAzLDE2LjAxNzMzODIgMTcuNjU2ODU0MiwxNS42NTY4NTQyIEMxOC4wNDczNzg1LDE1LjI2NjMzIDE4LjA0NzM3ODUsMTQuNjMzMTY1IDE3LjY1Njg1NDIsMTQuMjQyNjQwNyBMMTcuNjU2ODU0MiwxNC4yNDI2NDA3IEwxNS4zODksMTEuOTc0IEwxNy42NTY4NTQyLDkuNzA3MTA2NzggQzE4LjA0NzM3ODUsOS4zMTY1ODI0OSAxOC4wNDczNzg1LDguNjgzNDE3NTEgMTcuNjU2ODU0Miw4LjI5Mjg5MzIyIEMxNy4yOTYzNzAzLDcuOTMyNDA5MjYgMTYuNzI5MTM5Miw3LjkwNDY3OTcyIDE2LjMzNjg0OCw4LjIwOTcwNDYxIEwxNi4yNDI2NDA3LDguMjkyODkzMjIgTDEzLjk3NCwxMC41NiBMMTEuNzA3MTA2OCw4LjI5Mjg5MzIyIFoiIGlkPSJjb2xvcvCfjqgiPjwvcGF0aD4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg=="
+                            width="24px"
+                            height="24px"
+                    />
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
